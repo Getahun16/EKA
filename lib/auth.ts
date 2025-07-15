@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-import bcrypt from "bcryptjs"; // ✅ changed from 'bcrypt'
+import bcrypt from "bcryptjs";
 
 const SECRET = process.env.JWT_SECRET;
 
@@ -16,15 +16,18 @@ export function verifyToken(token: string) {
   return jwt.verify(token, SECRET as string);
 }
 
+// generate a secure random token
 export function generateResetToken() {
   return crypto.randomBytes(32).toString("hex");
 }
 
+// hash a plaintext password
 export async function hashPassword(password: string) {
   const salt = await bcrypt.genSalt(10);
   return bcrypt.hash(password, salt);
 }
 
+// verify plaintext password against hashed password
 export async function verifyPassword(
   plainPassword: string,
   hashedPassword: string

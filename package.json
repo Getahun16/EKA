@@ -8,10 +8,8 @@
     "lint": "next lint",
     "postbuild": "next-sitemap",
     "clean": "rimraf .next",
-    "build": "npm run clean && next build",
-        "build": "next build",
+    "build": "next build",
     "vercel-build": "prisma generate && next build"
-
   },
   "dependencies": {
     "@prisma/client": "^6.11.0",
