@@ -1,0 +1,19 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MariaDB",
+      "name": "Kidney Ass",
+      "database": "kidney",
+      "username": "root",
+      "password": "1234"
+    }
+  ],
+  "github.copilot.nextEditSuggestions.enabled": true
+}

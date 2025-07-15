@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id               Int      @id @default(autoincrement())
+  email            String   @unique
+  password         String
+  resetToken       String?  // new optional field
+  resetTokenExpiry DateTime? // new optional field
+  createdAt        DateTime @default(now())
+}
+
+model Partner {
+  id        Int      @id @default(autoincrement())
+  name      String
+  logo      String
+  createdAt DateTime @default(now())
+}
+
+model Blog {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.Text
+  content   String   @db.LongText
+  image     String?  @db.Text
+  createdAt DateTime @default(now())
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.Text
+  email     String   @db.Text
+  message   String   @db.LongText
+  createdAt DateTime @default(now())
+}
+
+model Registration {
+  id              Int      @id @default(autoincrement())
+  fullName        String
+  dateOfBirth     DateTime
+  email           String
+  mobileNumber    String
+  gender          String
+  occupation      String
+  idType          String
+  idNumber        String
+  issuedAuthority String
+  issuedPlace     String
+  issuedDate      DateTime
+  expiryDate      DateTime
+  createdAt       DateTime @default(now())
+}
+
+model Slide {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  image       String
+  createdAt   DateTime @default(now())
+}

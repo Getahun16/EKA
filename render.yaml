@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: kidney-app
+    runtime: node
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    plan: free
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      - key: DATABASE_URL
+        value: mysql://degantmw_degan:RGe^199eVZT_@your_mysql_host:3306/degantmw_kidney
+
+      - key: JWT_SECRET
+        value: b42ccbd70a34466a67c7a4315010f5e343f05f787fe2bda82b76b9cf0211d19f9e5c37ed0e874b2c7c80d6fce2ed18de9ad0b7d5f7a992ace888443ec205be96
