@@ -114,6 +114,18 @@ export default function AdminSettingsPage() {
           />
         </label>
 
+        {/* Hello world how are you  */}
+        <label className="block">
+          Confirm Password
+          <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full mt-1 p-2 border rounded"
+          />
+        </label>
+
         <button
           type="submit"
           className="w-full bg-sky-600 hover:bg-sky-700 text-white cursor-pointer py-2 rounded"
