@@ -1,6 +1,6 @@
 import About from "./components/About";
 import Services from "./components/Services";
-import BlogList from "./components/BlogList";
+import News from "./components/News"
 import MissionVision from "./components/MisoinVision";
 import PartnerSlider from "./components/PartnerSlider";
 import Bio from "./components/Bio";
@@ -12,7 +12,7 @@ export default function MainPage() {
       <HeroSlider />
       <About />
       <MissionVision />
-      <BlogList />
+      <News />
       <Bio />
       <Services />
       <PartnerSlider />

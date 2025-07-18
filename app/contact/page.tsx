@@ -114,8 +114,8 @@ export default function ContactUs() {
             <div className="flex items-start gap-4">
               <Phone className="text-sky-500 mt-1" />
               <div>
-                <p>+251911671212</p>
-                <p>+251919396547</p>
+                <p>0118263382 </p>
+                <p>0911671212</p>
               </div>
             </div>
 

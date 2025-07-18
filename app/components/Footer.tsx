@@ -75,7 +75,7 @@ export default function Footer() {
                 href="tel:+251911234567"
                 className="hover:text-sky-500 transition"
               >
-                +251911671212 | +251919396547
+               0118263382 / 0911671212
               </a>
             </li>
             <li className="flex items-center gap-3">

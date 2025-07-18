@@ -9,7 +9,7 @@ import Image from "next/image";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "#about" },
-  { name: "Blogs", href: "#bloglist" },
+  { name: "News", href: "#news" },
   { name: "Services", href: "#services" },
   { name: "Our Kidney", href: "/ourkidney" },
   { name: "Contact", href: "/contact" },
@@ -52,16 +52,17 @@ export default function Navbar() {
             className="flex items-center gap-3"
             onClick={() => setOpen(false)}
           >
-            <div className="relative w-12 h-12">
-              <Image
-                src="/images/img.png"
-                alt="Kidney Association Logo"
-                fill
-                sizes="48px"
-                className="object-cover rounded-full border-2 border-sky-500 shadow"
-              />
-            </div>
-            <span className="hidden sm:block text-base lg:text-lg xl:text-xl font-semibold text-sky-50 leading-tight tracking-tight uppercase">
+          <div className="relative w-16 h-16">
+  <Image
+    src="/images/img.png"
+    alt="Kidney Association Logo"
+    fill
+    sizes="64px"
+    className="object-cover rounded-full "
+  />
+</div>
+
+            <span className="hidden sm:block text-base lg:text-lg xl:text-xl font-semibold text-sky-50 leading-tight tracking-tight capitalize">
               Ethiopian Kidney
               <br />
               Association

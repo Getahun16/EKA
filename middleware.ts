@@ -1,21 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
-export function middleware(req: NextRequest) {
+async function verifyToken(token: string) {
+  try {
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    const { payload } = await jwtVerify(token, secret);
+    return payload;
+  } catch {
+    return null;
+  }
+}
+
+export async function middleware(req: NextRequest) {
+  const pathname = req.nextUrl.pathname;
   const isAdminPage =
-    req.nextUrl.pathname.startsWith("/admin") &&
-    !req.nextUrl.pathname.startsWith("/admin/login") &&
-    !req.nextUrl.pathname.startsWith("/admin/register");
+    pathname.startsWith("/admin") &&
+    !pathname.startsWith("/admin/login") &&
+    !pathname.startsWith("/admin/register");
 
   const token = req.cookies.get("admin-token")?.value;
 
-  // If trying to access admin page without token, redirect to login
-  if (isAdminPage && !token) {
-    return NextResponse.redirect(new URL("/admin/login", req.url));
+  if (isAdminPage) {
+    if (!token || !(await verifyToken(token))) {
+      return NextResponse.redirect(new URL("/admin/login", req.url));
+    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*"], // 🔒 Protect all /admin routes
+  matcher: ["/admin/:path*"],
 };

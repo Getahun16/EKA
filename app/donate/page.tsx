@@ -1,13 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { FaMobileAlt, FaUniversity, FaEnvelope } from "react-icons/fa";
-import { MdPhone } from "react-icons/md";
+import { useEffect, useState } from "react";
+
+type DonationMethod = {
+  id: number;
+  accountName?: string | null;
+  accountNumber?: string | null;
+  logoUrl: string;
+};
 
 export default function DonatePage() {
+  const [methods, setMethods] = useState<DonationMethod[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchMethods() {
+      const res = await fetch("/api/donation-methods");
+      const data = await res.json();
+      setMethods(data);
+      setLoading(false);
+    }
+    fetchMethods();
+  }, []);
+
+  if (loading)
+    return <p className="text-center mt-12">Loading donation methods...</p>;
+
   return (
-    <section className="max-w-4xl mx-auto p-6 sm:p-10 bg-white rounded-3xl shadow-xl mt-12 border border-gray-100">
-      <h1 className="text-3xl sm:text-4xl font-bold text-center text-sky-500  mb-6">
+    <section className="max-w-4xl mx-auto p-6 sm:p-10 bg-white  mt-12  mb-8">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center text-sky-500 mb-6">
         Support Our Work
       </h1>
 
@@ -17,83 +39,32 @@ export default function DonatePage() {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Telebirr */}
-        <div className="bg-blue-50 p-6 rounded-xl border border-blue-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <Image
-              src="/images/telebirr.png"
-              alt="Telebirr"
-              width={40}
-              height={40}
-            />
-            <h2 className="text-xl font-semibold text-sky-500">Telebirr</h2>
+        {methods.map((method) => (
+          <div
+            key={method.id}
+            className="bg-blue-50 p-6 rounded-xl border border-blue-200 shadow-sm"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <Image
+                src={method.logoUrl}
+                alt={method.accountName || "Donation Method"}
+                width={40}
+                height={40}
+              />
+              <h2 className="text-xl font-semibold text-sky-500">
+                {method.accountName || "Donation Method"}
+              </h2>
+            </div>
+            {method.accountNumber && (
+              <p className="text-gray-700">
+                💳 Account Number:{" "}
+                <span className="font-semibold text-sky-600">
+                  {method.accountNumber}
+                </span>
+              </p>
+            )}
           </div>
-          <p className="text-gray-700">
-            <FaMobileAlt className="inline text-sky-500 mr-2" />
-            Account:{" "}
-            <span className="font-semibold text-sky-600 ml-1">0922-345678</span>
-          </p>
-        </div>
-
-        {/* CBE */}
-        <div className="bg-blue-50 p-6 rounded-xl border border-blue-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <Image src="/images/cbe.jpeg" alt="CBE" width={40} height={40} />
-            <h2 className="text-xl font-semibold text-sky-500">
-              Commercial Bank of Ethiopia
-            </h2>
-          </div>
-          <p className="text-gray-700 mb-1">
-            <FaUniversity className="inline text-sky-500 mr-2" />
-            Account Name: Ethiopian Kidney Association
-          </p>
-          <p className="text-gray-700">
-            💳 Account Number:{" "}
-            <span className="font-semibold text-sky-600">1000123456789</span>
-          </p>
-        </div>
-
-        {/* BOA */}
-        <div className="bg-blue-50 p-6 rounded-xl border border-blue-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <Image
-              src="/images/aby.png"
-              alt="Bank of Abyssinia"
-              width={40}
-              height={40}
-            />
-            <h2 className="text-xl font-semibold text-sky-500">
-              Bank of Abyssinia
-            </h2>
-          </div>
-          <p className="text-gray-700 mb-1">
-            <FaUniversity className="inline text-sky-500 mr-2" />
-            Account Name: Ethiopian Kidney Association
-          </p>
-          <p className="text-gray-700">
-            💳 Account Number:{" "}
-            <span className="font-semibold text-sky-600">0112233445566</span>
-          </p>
-        </div>
-
-        {/* Others */}
-        <div className="bg-blue-50 p-6 rounded-xl border border-blue-200 shadow-sm">
-          <h2 className="text-xl font-semibold text-sky-500 mb-4">
-            Other Banks
-          </h2>
-          <p className="text-gray-700 mb-2">
-            For additional bank details or international transfers, please
-            contact us:
-          </p>
-          <p className="text-gray-700 mb-1">
-            <MdPhone className="inline text-sky-500 mr-2" />
-            <span className="font-semibold text-sky-600">+251 911 123456</span>
-          </p>
-          <p className="text-gray-700">
-            <FaEnvelope className="inline text-sky-500 mr-2" />
-            <span className="font-semibold text-sky-600">info@eka.org.et</span>
-          </p>
-        </div>
+        ))}
       </div>
     </section>
   );

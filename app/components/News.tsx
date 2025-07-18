@@ -66,7 +66,7 @@ export default function BlogList() {
                   className="mr-2 group-hover:-translate-x-1 transition-transform"
                   size={16}
                 />
-                Back to Blogs
+                Back to News
               </button>
 
               <article className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
@@ -159,14 +159,14 @@ export default function BlogList() {
   }
 
   return (
-    <section className="py-20 bg-gray-50" id="bloglist">
+    <section className="py-20 bg-gray-50" id="news">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl md:text-3xl font-bold text-sky-500 mb-8 text-center">
-          Our Blogs
+          News
         </h2>
 
         {blogs.length === 0 ? (
-          <p className="text-gray-500 text-center">No blog posts available.</p>
+          <p className="text-gray-500 text-center">No news post available.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {blogs.map((blog) => (

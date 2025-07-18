@@ -17,6 +17,7 @@ export default function ResetPasswordPage() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [msg, setMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleReset = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,6 +26,9 @@ export default function ResetPasswordPage() {
       setMsg("Passwords don't match");
       return;
     }
+
+    setIsLoading(true);
+    setMsg("");
 
     try {
       const res = await fetch(`/api/auth/reset-password/${token}`, {
@@ -45,42 +49,53 @@ export default function ResetPasswordPage() {
       } else {
         setMsg("Something went wrong");
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50">
       <form
         onSubmit={handleReset}
-        className="space-y-4 w-full max-w-md bg-white p-6 shadow rounded"
+        className="space-y-6 w-full max-w-md bg-white p-8 shadow-lg rounded-lg"
       >
-        <h1 className="text-2xl font-bold text-center">Reset Password</h1>
-        {msg && <p className="text-center text-lime-600">{msg}</p>}
+        <h1 className="text-3xl font-extrabold text-center text-gray-900">
+          Reset Password
+        </h1>
+        {msg && (
+          <p className="text-center text-lime-600 font-medium text-sm">{msg}</p>
+        )}
         <label className="block">
-          New Password
+          <span className="text-gray-700 font-semibold">New Password</span>
           <input
             type="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full border rounded p-2"
+            className="mt-1 block w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-sky-500 focus:ring focus:ring-sky-300 focus:ring-opacity-50 transition"
           />
         </label>
         <label className="block">
-          Confirm Password
+          <span className="text-gray-700 font-semibold">Confirm Password</span>
           <input
             type="password"
             required
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
-            className="mt-1 block w-full border rounded p-2"
+            className="mt-1 block w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-sky-500 focus:ring focus:ring-sky-300 focus:ring-opacity-50 transition"
           />
         </label>
         <button
           type="submit"
-          className="w-full bg-sky-500 text-white py-2 cursor-pointer rounded hover:bg-sky-600"
+          disabled={isLoading}
+          className={`w-full py-2 rounded text-white font-medium transition cursor-pointer ${
+            isLoading
+              ? "bg-sky-300 cursor-not-allowed"
+              : "bg-sky-600 hover:bg-sky-700"
+          }`}
         >
-          Reset Password
+          {isLoading ? "Sending..." : "Send Reset Link"}
         </button>
       </form>
     </div>

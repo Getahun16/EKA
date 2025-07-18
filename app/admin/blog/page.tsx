@@ -183,7 +183,7 @@ export default function BlogManager() {
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 animate-fade-in">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-semibold text-gray-800">
-                Delete Blog
+                Delete News
               </h3>
               <button
                 onClick={() => setShowDeleteModal(false)}
@@ -193,7 +193,7 @@ export default function BlogManager() {
               </button>
             </div>
             <p className="text-gray-600 mb-6">
-              Are you sure you want to delete this blog? This action cannot be
+              Are you sure you want to delete this news? This action cannot be
               undone.
             </p>
             <div className="flex justify-end gap-3">
@@ -221,7 +221,7 @@ export default function BlogManager() {
             className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-blue-300 text-white rounded-lg transition-colors"
           >
             <FiPlus className="text-lg" />
-            Add New Blog
+            Add News
           </button>
         </div>
       )}
@@ -248,7 +248,7 @@ export default function BlogManager() {
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Blog Title
+                News Title
               </label>
               <input
                 type="text"
@@ -269,7 +269,7 @@ export default function BlogManager() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Blog Content
+                News Content
               </label>
               <textarea
                 placeholder="Write your blog content here..."
@@ -369,7 +369,7 @@ export default function BlogManager() {
 
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">
-          Manage Blog Posts
+          Manage News Post
         </h2>
         {isInitialLoading ? (
           <div className="flex justify-center items-center h-60">
@@ -378,7 +378,7 @@ export default function BlogManager() {
         ) : blogs.length === 0 ? (
           <div className="bg-gray-50 rounded-xl p-8 text-center">
             <p className="text-gray-500">
-              No blog posts yet. Create your first one!
+              No news post yet. Create your first one!
             </p>
           </div>
         ) : (

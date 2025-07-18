@@ -33,34 +33,27 @@ export default function About() {
           </h2>
 
           <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-5">
-            The{" "}
-            <span className="font-semibold text-sky-500">
-              Ethiopian Kidney Association
-            </span>{" "}
-            works to prevent kidney disease and hypertension in Ethiopia by
-            raising public awareness, hosting educational seminars, and
-            conducting screening programs. We promote kidney and high blood
-            pressure care in collaboration with healthcare institutions
-            nationwide.
+            The Ethiopian Kidney Association (EKA) is a leading professional
+            organization dedicated to advancing kidney health in Ethiopia since
+            1998 E.C (2005 G.C). For over 17 years, EKA has united
+            nephrologists, health professionals, governmental and
+            non-governmental organizations to improve prevention, care, and
+            research in kidney disease.
           </p>
 
-          {/* Collapsible Content */}
           {showMore && (
-            <>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-5">
-                በሰፊው ለህብረተሰቡና ለጤና ባለሙያዎች ስለኩላሊትና የደም ግፊት በሽታ መከላከያና ሕክምና መሰረታዊ
-                ምርመራዎችን በመስጠት፣ በተመሳሳይ ዓይነት ህክምና በአገራችን እንዲስፋፋ ከተወሰኑ አካላት ጋር
-                በመተባበር ስራ እንከናወናለን።
-              </p>
-
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                እኛ በኩላሊት ታማሚዎችና ባለሙያዎች መካከል የኩላሊት ሕመም መገንዘብና ትምህርት ማቅረብ ላይ
-                እየተጋለጠን ነው።
-              </p>
-            </>
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-5">
+              Guided by 19 central and 9 regional board members, EKA actively
+              celebrates World Kidney Day (WKD), World Hypertension Day (WHD),
+              and hosts an annual nephrology conference. It collaborates with
+              international partners to strengthen the nephrology workforce
+              through fellowships, grants, and training. EKA welcomes
+              partnerships that contribute to building a healthier future for
+              kidney patients in Ethiopia.
+            </p>
           )}
 
-          {/* See More / See Less Button */}
+          {/* Toggle Button */}
           <button
             onClick={() => setShowMore(!showMore)}
             className="mt-4 inline-block text-sm sm:text-base font-semibold text-sky-500 border border-sky-500 rounded-full px-5 py-2 hover:bg-sky-500 hover:text-white transition cursor-pointer"
