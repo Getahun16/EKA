@@ -42,7 +42,10 @@ export default function RootLayout({
           content="Promoting kidney health, awareness, and saving lives in Ethiopia through the Ethiopian Kidney Association (EKA)."
         />
         <meta property="og:image" content="/images/img.png" />
-        <meta property="og:url" content="https://www.eka.org.et" />
+        <meta
+          property="og:url"
+          content="https://ethiopiankidneyassociation.com"
+        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta

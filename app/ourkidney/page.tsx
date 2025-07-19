@@ -22,7 +22,7 @@ export default function OurKidney() {
 
   type ListItemProps = {
     text: string;
-    icon: React.ComponentType<{ className?: string; size?: number }>;
+    icon: React.ElementType;
     color?: string;
   };
 

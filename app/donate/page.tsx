@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 type DonationMethod = {
   id: number;
@@ -25,7 +26,14 @@ export default function DonatePage() {
   }, []);
 
   if (loading)
-    return <p className="text-center mt-12">Loading donation methods...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] w-full">
+        <LoadingSpinner />
+        <span className="mt-4 text-sky-600 text-lg text-center">
+          Loading donation methods...
+        </span>
+      </div>
+    );
 
   return (
     <section className="max-w-4xl mx-auto p-6 sm:p-10 bg-white  mt-12  mb-8">

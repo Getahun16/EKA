@@ -9,6 +9,7 @@ import {
   MapPin,
   X,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -32,24 +33,24 @@ export default function Footer() {
           </h3>
           <ul className="space-y-3">
             <li>
-              <a href="#home" className="hover:text-sky-500 transition">
+              <Link href="/#home" className="hover:text-sky-500 transition">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#about" className="hover:text-sky-500 transition">
+              <Link href="/#about" className="hover:text-sky-500 transition">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#services" className="hover:text-sky-500 transition">
+              <Link href="/#services" className="hover:text-sky-500 transition">
                 Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/contact" className="hover:text-sky-500 transition">
+              <Link href="/contact" className="hover:text-sky-500 transition">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -75,7 +76,7 @@ export default function Footer() {
                 href="tel:+251911234567"
                 className="hover:text-sky-500 transition"
               >
-               0118263382 / 0911671212
+                0118263382 / 0911671212
               </a>
             </li>
             <li className="flex items-center gap-3">
@@ -133,7 +134,7 @@ export default function Footer() {
       </div>
 
       <div className="mt-2 text-center text-white/70 text-xs font-medium tracking-wide select-none">
-        Designed & Developed by{" "}
+        Designed & Developed by
         <a
           href="https://degantechnologies.com"
           target="_blank"
