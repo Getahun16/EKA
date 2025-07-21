@@ -204,15 +204,13 @@ export default function AdminDonationMethods() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 animate-fade-in">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-semibold text-gray-800">
+              <h3 className="text-xl text-center font-semibold text-gray-800">
                 Delete Donation Method
               </h3>
               <button
                 onClick={() => setShowDeleteModal(false)}
                 className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100"
-              >
-                <FiX className="w-5 h-5" />
-              </button>
+              ></button>
             </div>
             <p className="text-gray-600 mb-6">
               Are you sure you want to delete this donation method? This action
@@ -221,13 +219,13 @@ export default function AdminDonationMethods() {
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDelete}
-                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
+                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition cursor-pointer"
               >
                 Delete
               </button>
@@ -240,7 +238,7 @@ export default function AdminDonationMethods() {
         <div className="flex justify-end mb-8">
           <button
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-blue-300 text-white rounded-lg transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-blue-300 text-white rounded-lg transition-colors cursor-pointer"
           >
             <FiPlus className="text-lg" />
             Add Donation Method
@@ -263,7 +261,7 @@ export default function AdminDonationMethods() {
             <button
               type="button"
               onClick={resetForm}
-              className="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100"
+              className="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100 cursor-pointer"
             >
               <FiX className="text-lg" />
             </button>
@@ -279,7 +277,7 @@ export default function AdminDonationMethods() {
                 placeholder="Enter account name"
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-300 focus:border-blue-300 border-gray-300"
+                className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 border-gray-300"
               />
             </div>
 
@@ -292,7 +290,7 @@ export default function AdminDonationMethods() {
                 placeholder="Enter account number"
                 value={accountNumber}
                 onChange={(e) => setAccountNumber(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-300 focus:border-blue-300 border-gray-300"
+                className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 border-gray-300"
               />
             </div>
 
@@ -334,7 +332,7 @@ export default function AdminDonationMethods() {
                       setImagePreview(null);
                       setLogoUrl("");
                     }}
-                    className="flex items-center gap-1 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors"
+                    className="flex items-center gap-1 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors cursor-pointer"
                   >
                     <FiTrash2 className="text-sm" />
                     Remove
@@ -362,7 +360,7 @@ export default function AdminDonationMethods() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-white bg-sky-500 hover:bg-blue-300 transition-colors ${
+                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-white bg-sky-500 hover:bg-blue-300 transition-colors cursor-pointer ${
                   isLoading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
@@ -431,14 +429,14 @@ export default function AdminDonationMethods() {
                     <div className="flex gap-3">
                       <button
                         onClick={() => handleEdit(method)}
-                        className="p-2 text-sky-500 hover:text-sky-700 hover:bg-sky-50 rounded-full transition-colors"
+                        className="p-2 text-sky-500 hover:text-sky-700 hover:bg-sky-50 rounded-full transition-colors cursor-pointer"
                         title="Edit"
                       >
                         <FiEdit2 />
                       </button>
                       <button
                         onClick={() => confirmDelete(method.id)}
-                        className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-full transition-colors"
+                        className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-full transition-colors cursor-pointer"
                         title="Delete"
                       >
                         <FiTrash2 />

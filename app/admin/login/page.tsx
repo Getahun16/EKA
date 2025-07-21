@@ -49,20 +49,24 @@ export default function AdminLogin() {
       });
 
       if (res.ok) {
-        router.push("/admin");
+        // Show spinner for a short time before redirect
+        setTimeout(() => {
+          setIsLoading(false);
+          router.push("/admin");
+        }, 800);
       } else {
         const data = await res.json();
         setErrors((prev) => ({
           ...prev,
           form: data.message || "Login failed",
         }));
+        setIsLoading(false);
       }
     } catch {
       setErrors((prev) => ({
         ...prev,
         form: "An error occurred during login",
       }));
-    } finally {
       setIsLoading(false);
     }
   };
@@ -93,7 +97,7 @@ export default function AdminLogin() {
         </div>
 
         <h2 className="text-2xl font-bold mb-6 text-sky-700 text-center">
-          Admin Portal
+          Admin Login
         </h2>
 
         {errors.form && (
@@ -114,7 +118,7 @@ export default function AdminLogin() {
               setEmail(e.target.value);
               if (errors.email) setErrors((p) => ({ ...p, email: "" }));
             }}
-            className={`w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+            className={`w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 focus:outline-none focus:outline-sky-500 ${
               errors.email ? "border-red-500" : "border-gray-300"
             }`}
           />
@@ -137,7 +141,7 @@ export default function AdminLogin() {
               setPassword(e.target.value);
               if (errors.password) setErrors((p) => ({ ...p, password: "" }));
             }}
-            className={`w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+            className={`w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-300 focus:outline-none focus:outline-sky-500 ${
               errors.password ? "border-red-500" : "border-gray-300"
             }`}
           />

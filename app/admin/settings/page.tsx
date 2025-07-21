@@ -99,7 +99,7 @@ export default function AdminSettingsPage() {
             required
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
-            className="w-full mt-1 p-2 border rounded"
+            className="w-full mt-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
           />
         </label>
 
@@ -110,7 +110,7 @@ export default function AdminSettingsPage() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full mt-1 p-2 border rounded"
+            className="w-full mt-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
           />
         </label>
 

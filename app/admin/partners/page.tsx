@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Pencil, Trash2, X, Loader2 } from "lucide-react";
 import { toast, Toaster } from "react-hot-toast";
@@ -23,6 +23,9 @@ export default function ManagePartnersPage() {
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [loadingPartners, setLoadingPartners] = useState(true);
+
+  // Ref for the form to scroll into view
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   // Modal state
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -58,6 +61,12 @@ export default function ManagePartnersPage() {
     setName(p.name);
     setImagePreview(p.logo);
     setShowForm(true);
+    // Scroll to the form after state updates
+    setTimeout(() => {
+      if (formRef.current) {
+        formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   }
 
   function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -130,7 +139,7 @@ export default function ManagePartnersPage() {
           <h2 className="text-2xl font-bold text-sky-700">Manage Partners</h2>
           <button
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 bg-sky-500 hover:bg-blue-300 text-white px-4 py-2 rounded-lg shadow transition"
+            className="flex items-center gap-2 bg-sky-500 hover:bg-blue-300 text-white px-4 py-2 rounded-lg shadow transition cursor-pointer"
           >
             <FiPlus />
             Add Partner
@@ -140,6 +149,7 @@ export default function ManagePartnersPage() {
 
       {(showForm || editingId) && (
         <form
+          ref={formRef}
           onSubmit={onSubmit}
           className="bg-white p-6 rounded-2xl shadow-lg space-y-4 border border-gray-200"
         >
@@ -150,7 +160,7 @@ export default function ManagePartnersPage() {
             <button
               type="button"
               onClick={resetForm}
-              className="p-2 hover:bg-gray-100 rounded-full"
+              className="p-2 hover:bg-gray-100 rounded-full cursor-pointer"
             >
               <X className="w-5 h-5 text-gray-600" />
             </button>
@@ -190,7 +200,7 @@ export default function ManagePartnersPage() {
           <button
             type="submit"
             disabled={loading}
-            className={`flex items-center gap-2 px-6 py-2 rounded-lg text-white ${
+            className={`flex items-center gap-2 px-6 py-2 rounded-lg text-white cursor-pointer ${
               loading
                 ? "bg-blue-200 cursor-not-allowed"
                 : "bg-blue-300 hover:bg-blue-400"
@@ -234,7 +244,7 @@ export default function ManagePartnersPage() {
                 <div className="flex justify-between">
                   <button
                     onClick={() => startEdit(p)}
-                    className="text-blue-600 hover:text-blue-800"
+                    className="text-blue-600 hover:text-blue-800 cursor-pointer"
                     title="Edit"
                   >
                     <Pencil className="w-5 h-5" />
@@ -244,7 +254,7 @@ export default function ManagePartnersPage() {
                       setDeleteId(p.id);
                       setShowDeleteModal(true);
                     }}
-                    className="text-red-600 hover:text-red-800"
+                    className="text-red-600 hover:text-red-800 cursor-pointer"
                     title="Delete"
                   >
                     <Trash2 className="w-5 h-5" />
@@ -266,7 +276,7 @@ export default function ManagePartnersPage() {
               </h3>
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100"
+                className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 cursor-pointer"
               >
                 <FiX className="w-5 h-5" />
               </button>
@@ -278,13 +288,13 @@ export default function ManagePartnersPage() {
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDelete}
-                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
+                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition cursor-pointer"
               >
                 Delete
               </button>

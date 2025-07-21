@@ -188,9 +188,7 @@ export default function BlogManager() {
               <button
                 onClick={() => setShowDeleteModal(false)}
                 className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100"
-              >
-                <FiX className="w-5 h-5" />
-              </button>
+              ></button>
             </div>
             <p className="text-gray-600 mb-6">
               Are you sure you want to delete this news? This action cannot be
@@ -199,13 +197,13 @@ export default function BlogManager() {
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDelete}
-                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
+                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition cursor-pointer"
               >
                 Delete
               </button>
@@ -218,7 +216,7 @@ export default function BlogManager() {
         <div className="flex justify-end mb-8">
           <button
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-blue-300 text-white rounded-lg transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-blue-300 text-white rounded-lg transition-colors cursor-pointer"
           >
             <FiPlus className="text-lg" />
             Add News
@@ -239,7 +237,7 @@ export default function BlogManager() {
             <button
               type="button"
               onClick={resetForm}
-              className="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100"
+              className="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100 cursor-pointer"
             >
               <FiX className="text-lg" />
             </button>
@@ -258,7 +256,7 @@ export default function BlogManager() {
                   setTitle(e.target.value);
                   if (errors.title) setErrors({ ...errors, title: "" });
                 }}
-                className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 ${
                   errors.title ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -279,7 +277,7 @@ export default function BlogManager() {
                   if (errors.content) setErrors({ ...errors, content: "" });
                 }}
                 rows={8}
-                className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 ${
                   errors.content ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -321,7 +319,7 @@ export default function BlogManager() {
                       setImageFile(null);
                       setImagePreview(null);
                     }}
-                    className="flex items-center gap-1 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors"
+                    className="flex items-center gap-1 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors cursor-pointer"
                   >
                     <FiTrash2 className="text-sm" />
                     Remove
@@ -346,7 +344,7 @@ export default function BlogManager() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-white bg-sky-500 hover:bg-blue-300 transition-colors ${
+                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-white bg-sky-500 hover:bg-blue-300 transition-colors cursor-pointer ${
                   isLoading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
@@ -417,14 +415,14 @@ export default function BlogManager() {
                     <div className="flex gap-3">
                       <button
                         onClick={() => handleEdit(blog)}
-                        className="p-2 text-sky-500 hover:text-sky-700 hover:bg-sky-50 rounded-full transition-colors"
+                        className="p-2 text-sky-500 hover:text-sky-700 hover:bg-sky-50 rounded-full transition-colors cursor-pointer"
                         title="Edit"
                       >
                         <FiEdit2 />
                       </button>
                       <button
                         onClick={() => confirmDelete(blog.id)}
-                        className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-full transition-colors"
+                        className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-full transition-colors cursor-pointer"
                         title="Delete"
                       >
                         <FiTrash2 />
