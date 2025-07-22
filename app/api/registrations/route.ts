@@ -7,8 +7,7 @@ export async function GET() {
       orderBy: { createdAt: "desc" },
     });
     return NextResponse.json(registrations);
-  } catch (error) {
-    console.error("Failed to fetch registrations:", error);
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch registrations" },
       { status: 500 }
@@ -58,8 +57,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(newRegistration, { status: 201 });
-  } catch (error) {
-    console.error("Registration creation error:", error);
+  } catch {
     return NextResponse.json(
       { error: "Failed to create registration" },
       { status: 500 }

@@ -29,8 +29,7 @@ export default function ChangeEmailPage() {
         setMessage(data.message);
         setEmail("");
       }
-    } catch (err) {
-      console.error("Change email error:", err);
+    } catch {
       setStatus("error");
       setMessage("Something went wrong.");
     }

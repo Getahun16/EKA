@@ -71,9 +71,7 @@ export async function DELETE(req: NextRequest) {
     const filePath = path.join(process.cwd(), "public", blog.image);
     try {
       await unlink(filePath);
-    } catch (e) {
-      console.warn("Failed to delete image:", e);
-    }
+    } catch {}
   }
 
   await prisma.blog.delete({ where: { id } });

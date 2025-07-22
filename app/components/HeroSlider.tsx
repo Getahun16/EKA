@@ -40,8 +40,7 @@ export default function HeroSlider() {
         const res = await fetch("/api/slide");
         const data = await res.json();
         if (data?.length > 0) setSlides(data);
-      } catch (error) {
-        console.error("Error fetching slides:", error);
+      } catch {
       } finally {
         setIsLoading(false);
       }

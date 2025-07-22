@@ -134,7 +134,7 @@ export default function Footer() {
       </div>
 
       <div className="mt-2 text-center text-white/70 text-xs font-medium tracking-wide select-none">
-        Designed & Developed by
+        <span>Designed & Developed by</span>
         <a
           href="https://degantechnologies.com"
           target="_blank"

@@ -83,7 +83,6 @@ export default function ContactUs() {
       setForm({ name: "", email: "", message: "" });
       setTimeout(() => setSubmitted(false), 3000);
     } catch (err: unknown) {
-      console.error(err);
       if (err instanceof Error) {
         setError(err.message || "Something went wrong.");
       } else {

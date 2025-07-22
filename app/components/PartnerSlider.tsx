@@ -25,11 +25,9 @@ export default function PartnerSlider() {
         if (Array.isArray(data)) {
           setPartners(data);
         } else {
-          console.error("Unexpected response:", data);
           setPartners([]);
         }
-      } catch (err) {
-        console.error("Partner fetch error:", err);
+      } catch {
         setPartners([]);
       }
     };

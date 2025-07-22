@@ -45,9 +45,8 @@ export default function BlogManager() {
       const res = await fetch("/api/blog");
       const data = await res.json();
       setBlogs(data);
-    } catch (error) {
+    } catch {
       toast.error("Failed to fetch blogs");
-      console.error("Failed to fetch blogs", error);
     } finally {
       setIsInitialLoading(false); // hide initial spinner
     }
@@ -105,9 +104,8 @@ export default function BlogManager() {
       });
       resetForm();
       fetchBlogs();
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong", { id: toastId });
-      console.error("Blog save error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -135,9 +133,8 @@ export default function BlogManager() {
       fetchBlogs();
       setShowDeleteModal(false);
       setDeleteId(null);
-    } catch (error) {
+    } catch {
       toast.error("Delete failed", { id: toastId });
-      console.error("Delete failed:", error);
     }
   };
 

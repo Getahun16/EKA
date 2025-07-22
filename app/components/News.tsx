@@ -22,13 +22,12 @@ export default function BlogList() {
       try {
         const res = await fetch("/api/blog");
         if (!res.ok) {
-          console.error("Failed to fetch blogs. Status:", res.status);
           return;
         }
         const data = await res.json();
         setBlogs(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error("Failed to fetch blogs:", err);
+      } catch {
+        // Error handling removed console.log
       } finally {
         setIsLoading(false);
       }

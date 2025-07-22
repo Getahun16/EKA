@@ -49,9 +49,8 @@ export default function SlideManager() {
       const res = await fetch("/api/slide");
       const data = await res.json();
       setSlides(Array.isArray(data) ? data : []);
-    } catch (error) {
+    } catch {
       toast.error("Failed to fetch slides");
-      console.error("Failed to fetch slides", error);
     } finally {
       setIsInitialLoading(false);
     }
@@ -108,9 +107,8 @@ export default function SlideManager() {
       });
       resetForm();
       fetchSlides();
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong", { id: toastId });
-      console.error("Slide save error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -138,9 +136,8 @@ export default function SlideManager() {
       fetchSlides();
       setShowDeleteModal(false);
       setDeleteId(null);
-    } catch (error) {
+    } catch {
       toast.error("Delete failed", { id: toastId });
-      console.error("Delete failed:", error);
     }
   };
 

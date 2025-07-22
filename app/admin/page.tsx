@@ -59,8 +59,8 @@ export default function AdminDashboard() {
         );
 
         setChartData(result);
-      } catch (error) {
-        console.error("Failed to load dashboard stats", error);
+      } catch {
+        // Error handling without console.log
       } finally {
         setIsLoading(false);
       }

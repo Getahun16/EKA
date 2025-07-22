@@ -43,7 +43,6 @@ export default function ResetPasswordPage() {
       setMsg(data.message);
       setTimeout(() => router.push("/admin/login"), 2000);
     } catch (error: unknown) {
-      console.error("Reset error:", error);
       if (error instanceof Error) {
         setMsg(error.message || "Something went wrong");
       } else {

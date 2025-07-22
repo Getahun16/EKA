@@ -129,9 +129,8 @@ export default function AdminDonationMethods() {
       );
       resetForm();
       fetchMethods();
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong", { id: toastId });
-      console.error("Donation method save error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -157,9 +156,8 @@ export default function AdminDonationMethods() {
       fetchMethods();
       setShowDeleteModal(false);
       setDeleteId(null);
-    } catch (error) {
+    } catch {
       toast.error("Delete failed", { id: toastId });
-      console.error("Delete failed:", error);
     }
   };
 

@@ -4,11 +4,11 @@ import nodemailer from "nodemailer";
 import { generateResetToken } from "@/lib/auth";
 
 export async function POST(req: Request) {
-  console.log("🔍 [forgot-password] handler entered");
+  // Removed console.log
 
   try {
     const body = await req.json();
-    console.log("🔍 [forgot-password] body:", body);
+    // Removed console.log
 
     const email =
       typeof body.email === "string" && body.email.trim().length
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     }
 
     const user = await prisma.admin.findUnique({ where: { email } });
-    console.log("🔍 [forgot-password] user:", user);
+    // Removed console.log
     if (!user) {
       throw new Error(`No user found for ${email}`);
     }
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       where: { email },
       data: { resetToken: token, resetTokenExpiry: expiry },
     });
-    console.log("✅ token saved:", token);
+    // Removed console.log
 
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_SERVER, // e.g. smtp.gmail.com
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     });
 
     await transporter.verify();
-    console.log("✅ SMTP verified");
+    // Removed console.log
 
     const resetUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/reset-password/${token}`;
     await transporter.sendMail({
@@ -84,11 +84,10 @@ export async function POST(req: Request) {
         </div>
       `,
     });
-    console.log("✅ Email sent to", email);
+    // Removed console.log
 
     return NextResponse.json({ message: "Reset link sent." });
   } catch (err: unknown) {
-    console.error("🔴 [forgot-password] error:", err);
     const errorMessage =
       err instanceof Error ? err.message : "Internal server error";
     return NextResponse.json({ error: errorMessage }, { status: 500 });
