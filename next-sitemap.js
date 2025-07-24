@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://eka.degantechnologies.com",
+  siteUrl: "https://ethiopiankidneyassociation.et",
   generateRobotsTxt: true,
   sitemapSize: 7000,
 };
