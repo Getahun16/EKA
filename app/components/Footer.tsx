@@ -21,8 +21,7 @@ export default function Footer() {
             Ethiopian Kidney Association
           </h3>
           <p className="max-w-md text-white/90">
-            Dedicated to kidney health awareness, prevention, and patient
-            support across Ethiopia.
+            Dedicated to improving Nephrology in Ethiopia.
           </p>
         </div>
 

@@ -1,10 +1,11 @@
 import About from "./components/About";
 import Services from "./components/Services";
-import News from "./components/News"
+import News from "./components/News";
 import MissionVision from "./components/MisoinVision";
 import PartnerSlider from "./components/PartnerSlider";
 import Bio from "./components/Bio";
 import HeroSlider from "./components/HeroSlider";
+import FAQ from "./components/Faqs";
 
 export default function MainPage() {
   return (
@@ -15,6 +16,7 @@ export default function MainPage() {
       <News />
       <Bio />
       <Services />
+      <FAQ />
       <PartnerSlider />
     </main>
   );

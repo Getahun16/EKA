@@ -71,8 +71,10 @@ export default function ManagePartnersPage() {
 
   function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null;
-    if (file && file.size > 2 * 1024 * 1024) {
-      toast.error("Image must be <2MB");
+    if (file && file.size > 5 * 1024 * 1024) {
+      setImageFile(null);
+      setImagePreview(null);
+      toast.error("Image must be less than 5MB");
       return;
     }
     setImageFile(file);

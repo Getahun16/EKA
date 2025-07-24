@@ -1,8 +1,11 @@
-"use client";
-
 import { Target, Eye } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 
-export default function MissionVision() {
+export default async function MissionVision() {
+  const data = await prisma.missionVision.findMany();
+  const mission = data.find((d) => d.type === "mission");
+  const vision = data.find((d) => d.type === "vision");
+
   return (
     <section className="bg-gradient-to-br from-blue-100 via-white to-blue-200 py-16 md:py-24 px-6 md:px-10">
       <div className="max-w-7xl mx-auto space-y-16">
@@ -12,7 +15,8 @@ export default function MissionVision() {
             Our Mission & Vision
           </h2>
           <p className="text-gray-700 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
-            Dedicated to raising awareness and advancing kidney and blood pressure care across Ethiopia.
+            Dedicated to raising awareness and advancing kidney and blood
+            pressure care across Ethiopia.
           </p>
         </div>
 
@@ -26,10 +30,12 @@ export default function MissionVision() {
                 <div className="p-3 rounded-xl bg-blue-300 text-sky-500 mr-4">
                   <Target className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800">Our Mission</h3>
+                <h3 className="text-2xl font-bold text-gray-800">
+                  Our Mission
+                </h3>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed">
-                To be a leading force in Nephrology care by fostering the professional development of healthcare professionals.
+                {mission?.description || "No mission added yet."}
               </p>
             </div>
           </div>
@@ -45,7 +51,7 @@ export default function MissionVision() {
                 <h3 className="text-2xl font-bold text-gray-800">Our Vision</h3>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed">
-                To enhance the expertise and professional development of healthcare professionals through CPD training, fellowship opportunities, while supporting clinical practice through free screenings.
+                {vision?.description || "No vision added yet."}
               </p>
             </div>
           </div>

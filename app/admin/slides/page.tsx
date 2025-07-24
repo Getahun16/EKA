@@ -20,7 +20,7 @@ interface Slide {
   createdAt: string;
 }
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 2MB (match blog)
+const MAX_FILE_SIZE = 15 * 1024 * 1024; // 2MB (match blog)
 
 export default function SlideManager() {
   const [slides, setSlides] = useState<Slide[]>([]);

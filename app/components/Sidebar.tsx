@@ -15,6 +15,9 @@ import {
   ImageIcon,
   Settings2,
   CreditCard,
+  BookOpen,
+  Users,
+  HelpCircle,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -30,6 +33,9 @@ const links = [
   { name: "Registrations", href: "/admin/registrations", icon: UserCheck },
   { name: "Slides", href: "/admin/slides", icon: ImageIcon },
   { name: "Donations", href: "/admin/donation-methods", icon: CreditCard },
+  { name: "Mission & Vision", href: "/admin/mission-vision", icon: BookOpen },
+  { name: "Bio", href: "/admin/members", icon: Users },
+  { name: "Faqs", href: "/admin/faqs", icon: HelpCircle },
   { name: "Settings", href: "/admin/settings", icon: Settings2 },
 ];
 

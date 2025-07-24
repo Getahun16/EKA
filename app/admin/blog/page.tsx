@@ -1,4 +1,5 @@
 "use client";
+const MAX_FILE_SIZE = 15 * 1024 * 1024; // 2MB
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -298,7 +299,9 @@ export default function BlogManager() {
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       if (file) {
-                        if (file.size > 2 * 1024 * 1024) {
+                        if (file.size > MAX_FILE_SIZE) {
+                          setImageFile(null);
+                          setImagePreview(null);
                           toast.error("Image must be less than 2MB");
                           return;
                         }

@@ -1,4 +1,41 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+type Member = {
+  id: number;
+  type: "board" | "branch";
+  title: string;
+  name: string;
+  position: string;
+};
+
 export default function KidneyAssociationBio() {
+  const [boardMembers, setBoardMembers] = useState<Member[]>([]);
+  const [branchMembers, setBranchMembers] = useState<Member[]>([]);
+
+  useEffect(() => {
+    async function fetchMembers() {
+      try {
+        const res = await fetch("/api/members", {
+          cache: "no-store",
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch members");
+        }
+
+        const data = await res.json();
+        setBoardMembers(data.filter((m: Member) => m.type === "board"));
+        setBranchMembers(data.filter((m: Member) => m.type === "branch"));
+      } catch (err) {
+        console.error("Failed to load members:", err);
+      }
+    }
+
+    fetchMembers();
+  }, []);
+
   return (
     <section className="max-w-6xl mx-auto p-6 sm:p-10 bg-white rounded-3xl shadow-xl mt-12 border border-gray-100">
       {/* Header */}
@@ -43,26 +80,15 @@ export default function KidneyAssociationBio() {
             <h2 className="text-2xl font-bold text-sky-700">Board Members</h2>
           </div>
           <ul className="space-y-4">
-            {[
-              ["Dr. Lisane Seifu", "President"],
-              ["Dr. Tewodros Agonafir", "V/President"],
-              ["Mr. Takele Kassa", "Secretary"],
-              ["Mr. Worku Tadesse", "Accountant"],
-              ["Dr. Bezaye Abebe", "Member"],
-              ["Dr. Birhanu Worku", "Member"],
-              ["Dr. Seifemichael Getachew", "Member"],
-              ["Dr. Mr. Getachew Bayu", "Member"],
-              ["Dr. Wubeshet Jote", "Member"],
-              ["Dr. Getachew Wondafrash", "Member"],
-            ].map(([name, role], index) => (
-              <li key={index} className="flex items-start group">
+            {boardMembers.map((member) => (
+              <li key={member.id} className="flex items-start group">
                 <div className="h-2 w-2 bg-sky-300 rounded-full mt-2 mr-3"></div>
                 <div>
                   <span className="text-gray-800 font-medium group-hover:text-sky-700 transition-colors">
-                    {name}
+                    {member.title} {member.name}
                   </span>{" "}
                   <span className="text-sm text-sky-600 font-medium bg-sky-100 px-2 py-0.5 rounded-full">
-                    {role}
+                    {member.position}
                   </span>
                 </div>
               </li>
@@ -77,20 +103,15 @@ export default function KidneyAssociationBio() {
             <h2 className="text-2xl font-bold text-sky-700">Branch Members</h2>
           </div>
           <ul className="space-y-4">
-            {[
-              ["Dr. Muluken Tamirat", "Hawassa Representative"],
-              ["Dr. Fethi Mohammed", "Diredawa Representative"],
-              ["Dr. Daniel Arega", "Nazereth Representative"],
-              ["Dr. Workageghu Hailu", "Gondar Representative"],
-            ].map(([name, role], index) => (
-              <li key={index} className="flex items-start group">
+            {branchMembers.map((member) => (
+              <li key={member.id} className="flex items-start group">
                 <div className="h-2 w-2 bg-sky-300 rounded-full mt-2 mr-3"></div>
                 <div>
                   <span className="text-gray-800 font-medium group-hover:text-sky-700 transition-colors">
-                    {name}
+                    {member.title} {member.name}
                   </span>{" "}
                   <span className="text-sm text-sky-600 font-medium bg-sky-100 px-2 py-0.5 rounded-full">
-                    {role}
+                    {member.position}
                   </span>
                 </div>
               </li>

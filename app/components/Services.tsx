@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Users,
   Stethoscope,
@@ -63,9 +63,10 @@ const services = [
   },
 ];
 
-export default function Services() {
+const Services = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
+  const serviceRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   // Calculate current services slice
   const indexOfLast = currentPage * itemsPerPage;
@@ -81,6 +82,39 @@ export default function Services() {
     pageNumbers.push(i);
   }
 
+  // Listen for custom event from Navbar
+  useEffect(() => {
+    function handleScrollToService(e: CustomEvent) {
+      const { title } = e.detail;
+      const idx = services.findIndex((s) => s.title === title);
+      if (idx !== -1) {
+        const page = Math.floor(idx / itemsPerPage) + 1;
+        setCurrentPage(page);
+        setTimeout(() => {
+          const id = `service-${title.replace(/[^a-zA-Z0-9]+/g, "-")}`;
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+            el.classList.add("ring-4", "ring-sky-400");
+            setTimeout(
+              () => el.classList.remove("ring-4", "ring-sky-400"),
+              1200
+            );
+          }
+        }, 200); // Wait for pagination to render
+      }
+    }
+    window.addEventListener(
+      "scroll-to-service",
+      handleScrollToService as EventListener
+    );
+    return () =>
+      window.removeEventListener(
+        "scroll-to-service",
+        handleScrollToService as EventListener
+      );
+  }, []);
+
   return (
     <section id="services" className="py-20 bg-blue-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-20 text-center">
@@ -92,13 +126,19 @@ export default function Services() {
           {currentServices.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
+              id={`service-${title.replace(/[^a-zA-Z0-9]+/g, "-")}`}
+              ref={(el) => {
+                serviceRefs.current[title] = el;
+              }}
               className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition cursor-pointer"
             >
               <Icon className="mx-auto mb-4 text-sky-500" size={48} />
               <h3 className="text-xl font-semibold text-sky-900 mb-2">
                 {title}
               </h3>
-              <p className="text-sky-800 leading-relaxed text-sm">{description}</p>
+              <p className="text-sky-800 leading-relaxed text-sm">
+                {description}
+              </p>
             </div>
           ))}
         </div>
@@ -123,4 +163,6 @@ export default function Services() {
       </div>
     </section>
   );
-}
+};
+
+export default Services;
