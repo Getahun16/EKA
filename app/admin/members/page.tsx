@@ -26,6 +26,7 @@ export default function AdminMembersPage() {
     type: "board",
   });
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   // Modal state for delete confirmation
@@ -54,6 +55,12 @@ export default function AdminMembersPage() {
   );
 
   const handleSubmit = async () => {
+    // Validation: all fields required
+    if (!form.title.trim() || !form.name.trim() || !form.position.trim() || !form.type) {
+      setFormError("All fields are required.");
+      return;
+    }
+    setFormError(null);
     if (editingId) {
       await fetch(`/api/members/${editingId}`, {
         method: "PUT",
@@ -119,6 +126,11 @@ export default function AdminMembersPage() {
 
       {/* Form Section */}
       <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+        {formError && (
+          <div className="mb-4 text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2 text-sm">
+            {formError}
+          </div>
+        )}
         <h3 className="text-lg font-semibold text-gray-800 mb-4">
           {editingId ? "Edit Member" : "Add New Member"}
         </h3>
@@ -270,9 +282,8 @@ export default function AdminMembersPage() {
                                 <FiX className="w-5 h-5" />
                               </button>
                             </div>
-                            <p className="text-gray-600 mb-6">
-                              Are you sure you want to delete this member? This
-                              action cannot be undone.
+                            <p className="text-gray-600 mb-6 text-center break-words overflow-auto max-h-32">
+                              Are you sure you want to delete this member? This action cannot be undone.
                             </p>
                             <div className="flex justify-end gap-3">
                               <button
