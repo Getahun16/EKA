@@ -56,7 +56,12 @@ export default function AdminMembersPage() {
 
   const handleSubmit = async () => {
     // Validation: all fields required
-    if (!form.title.trim() || !form.name.trim() || !form.position.trim() || !form.type) {
+    if (
+      !form.title.trim() ||
+      !form.name.trim() ||
+      !form.position.trim() ||
+      !form.type
+    ) {
       setFormError("All fields are required.");
       return;
     }
@@ -277,13 +282,14 @@ export default function AdminMembersPage() {
                               </h3>
                               <button
                                 onClick={() => setShowDeleteModal(false)}
-                                className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 cursor-pointer"
+                                className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100"
                               >
                                 <FiX className="w-5 h-5" />
                               </button>
                             </div>
-                            <p className="text-gray-600 mb-6 text-center break-words overflow-auto max-h-32">
-                              Are you sure you want to delete this member? This action cannot be undone.
+                            <p className="text-gray-600 mb-6">
+                              Are you sure you want to delete this member? This
+                              action cannot be undone.
                             </p>
                             <div className="flex justify-end gap-3">
                               <button

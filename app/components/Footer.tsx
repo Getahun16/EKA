@@ -135,12 +135,12 @@ export default function Footer() {
       <div className="mt-2 text-center text-white/70 text-xs font-medium tracking-wide select-none">
         <span>Designed & Developed by</span>
         <a
-          href="https://degantechnologies.com"
+          href="https://getahun-negash.netlify.app/"
           target="_blank"
           rel="noreferrer"
           className="underline text-sky-500 hover:text-sky-600"
         >
-          Degan Technologies
+          Getahun Negash
         </a>
       </div>
     </footer>
